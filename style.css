@@ -1,0 +1,859 @@
+/* ==========================================================================
+   PRIMIUMBRANDS CREATIVE MARKETPLACE - ESTILOS CSS3
+   Diseño: Profesional y Minimalista (Inspiración Agencia Creativa EE. UU.)
+   Estudiante: Adolfo Keeling | Institución: Kodigo.org
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES DE DISEÑO (SISTEMA DE COLOR Y TIPOGRAFÍA)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Paleta Inspirada en Agencia Creativa Estadounidense */
+  --bg-body: #ffffff;
+  /* Fondo principal blanco puro */
+  --bg-card: #ffffff;
+  /* Fondo de tarjetas blanco */
+  --bg-muted: #f8fafc;
+  /* Fondo suave para contrastes */
+
+  /* Azul Marino Oscuro (Navy Blue Institucional) */
+  --navy-dark: #0a192f;
+  /* Azul marino profundo para encabezado */
+  --navy-accent: #1e3a8a;
+  /* Azul marino intermedio para botones activos */
+  --navy-light: #2563eb;
+  /* Azul acento moderno */
+
+  /* Textos y Bordes */
+  --text-primary: #0f172a;
+  /* Texto principal carbón oscuro */
+  --text-secondary: #475569;
+  /* Texto secundario gris pizarra */
+  --text-muted: #64748b;
+  /* Texto tenue para etiquetas */
+  --text-light: #f8fafc;
+  /* Texto claro sobre fondos oscuros */
+  --border-light: #e2e8f0;
+  /* Borde sutil y suave */
+  --border-hover: #cbd5e1;
+  /* Borde al interactuar */
+
+  /* Colores de Categorías (Pasteles Minimalistas) */
+  --badge-branding: #fdf2f8;
+  --badge-branding-text: #db2777;
+  --badge-marketing: #eff6ff;
+  --badge-marketing-text: #1d4ed8;
+  --badge-web: #ecfdf5;
+  --badge-web-text: #047857;
+  --badge-audiovisual: #f5f3ff;
+  --badge-audiovisual-text: #6d28d9;
+
+  /* Tipografía Requerida: Arial o Sans-Serif */
+  --font-family: Arial, Helvetica, sans-serif;
+
+  /* Bordes Suaves y Sombras */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  /* Bordes suaves para tarjetas */
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 10px 25px rgba(15, 23, 42, 0.1);
+  --transition: all 0.25s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. REINICIO GENERAL Y ESTRUCTURA BASE
+   -------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  /* Evita barras de desplazamiento horizontal */
+}
+
+.container {
+  width: 92%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Clase de utilidad para ocultar elementos de manera accesible */
+.hidden {
+  display: none !important;
+}
+
+/* Oculta visualmente manteniendo accesibilidad para motores de búsqueda y lectores de pantalla */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. ENCABEZADO (AZUL MARINO OSCURO)
+   -------------------------------------------------------------------------- */
+.header {
+  background-color: var(--navy-dark);
+  color: var(--text-light);
+  padding: 3.5rem 1rem 3rem 1rem;
+  text-align: center;
+  border-bottom: 3px solid var(--navy-accent);
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Bloque integrado de marca (Logo Protagónico + Subtítulo Justificado) */
+.brand-lockup {
+  width: 100%;
+  max-width: 440px;
+  /* Tamaño protagónico amplio y nítido */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.brand-logo {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.02);
+}
+
+/* Subtítulo justificado exactamente al ancho visual del logotipo */
+.brand-subtitle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #93c5fd;
+  /* Azul claro corporativo */
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 0.85rem;
+  padding: 0 4px;
+  /* Ajuste óptico fino para cuadrar con los bordes del logo */
+}
+
+.brand-subtitle span {
+  display: inline-block;
+}
+
+/* --------------------------------------------------------------------------
+   4. SECCIÓN PRINCIPAL Y TARJETA DE FILTROS
+   -------------------------------------------------------------------------- */
+.main-content {
+  flex: 1;
+  padding: 2.5rem 0 4rem 0;
+}
+
+/* Tarjeta minimalista de controles y filtros */
+.filters-card {
+  background-color: var(--bg-muted);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.filter-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-secondary);
+}
+
+/* Botones de categoría */
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.btn-category {
+  font-family: var(--font-family);
+  background-color: #ffffff;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-category:hover {
+  background-color: #f1f5f9;
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+.btn-category.active {
+  background-color: var(--navy-dark);
+  color: #ffffff;
+  border-color: var(--navy-dark);
+  box-shadow: 0 2px 6px rgba(10, 25, 47, 0.2);
+}
+
+/* Fila de presupuesto y botones */
+.budget-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  border-top: 1px solid var(--border-light);
+  padding-top: 1.25rem;
+}
+
+.budget-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 240px;
+  max-width: 320px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-symbol {
+  position: absolute;
+  left: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 1rem;
+  pointer-events: none;
+  /* Permite hacer clic a través del símbolo para enfocar el input */
+}
+
+.budget-field input {
+  font-family: var(--font-family);
+  width: 100%;
+  padding: 0.65rem 0.75rem 0.65rem 2rem;
+  background-color: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: var(--transition);
+}
+
+.budget-field input:focus {
+  border-color: var(--navy-accent);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.12);
+}
+
+.budget-field input.input-error {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.error-message {
+  font-size: 0.8rem;
+  color: #dc2626;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+/* Botones de acción */
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: var(--font-family);
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--navy-dark);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--navy-accent);
+  box-shadow: 0 4px 10px rgba(10, 25, 47, 0.2);
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: var(--text-secondary);
+  border-color: var(--border-light);
+}
+
+.btn-secondary:hover {
+  background-color: #f1f5f9;
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+/* Contador de resultados */
+.results-bar {
+  border-top: 1px solid var(--border-light);
+  padding-top: 0.75rem;
+}
+
+.results-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   5. CATÁLOGO DE PAQUETES CON FOTO PARALELA
+   -------------------------------------------------------------------------- */
+.catalog-layout {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+}
+
+.catalog-main {
+  flex: 1;
+  min-width: 0;
+  /* Evita desbordamiento en flexbox */
+  position: relative;
+  z-index: 1;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.75rem;
+}
+
+/* Columna de la Foto a lo largo de los paquetes (cubriendo la mitad de un paquete) */
+.catalog-photo-column {
+  width: 200px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 1.5rem;
+  z-index: 10;
+  /* Flota por encima de las tarjetas */
+  pointer-events: none;
+  /* Permite hacer clic en los botones de la tarjeta debajo */
+  margin-left: -120px;
+  /* Hace que exactamente la mitad del cuerpo cubra el paquete */
+  display: flex;
+  align-items: flex-start;
+}
+
+.catalog-floating-photo {
+  width: 360px;
+  max-width: none;
+  height: auto;
+  max-height: 640px;
+  /* Se extiende a lo largo de las filas de paquetes */
+  object-fit: contain;
+  display: block;
+  /* Sombra realista proyectada sobre el paquete que cubre */
+  filter: drop-shadow(-12px 18px 25px rgba(10, 25, 47, 0.28));
+  transition: transform 0.3s ease;
+}
+
+.catalog-floating-photo:hover {
+  transform: scale(1.02);
+}
+
+/* Tarjeta individual con bordes suaves */
+.service-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  /* Bordes suaves */
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Encabezado de la tarjeta */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  background-color: var(--bg-muted);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+}
+
+/* Insignias de categoría */
+.service-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.3rem 0.75rem;
+  border-radius: 50px;
+}
+
+.badge-branding {
+  background-color: #fdf2f8;
+  color: #db2777;
+}
+
+.badge-marketing,
+.badge-digital-marketing {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.badge-web,
+.badge-web-design {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.badge-packaging {
+  background-color: #fffbeb;
+  color: #b45309;
+}
+
+.badge-audiovisual {
+  background-color: #f5f3ff;
+  color: #6d28d9;
+}
+
+/* Título y cuerpo */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.65rem;
+  line-height: 1.35;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Pie de la tarjeta */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-light);
+  padding-top: 1.2rem;
+  margin-top: auto;
+}
+
+.card-price-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.card-price {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--navy-dark);
+}
+
+.btn-card-details {
+  background-color: #ffffff;
+  color: var(--navy-dark);
+  border: 1px solid var(--border-light);
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-card-details:hover {
+  background-color: var(--navy-dark);
+  color: #ffffff;
+  border-color: var(--navy-dark);
+}
+
+/* Estado sin resultados */
+.no-results {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  background-color: var(--bg-muted);
+  border: 1px dashed var(--border-light);
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+}
+
+.no-results-icon {
+  font-size: 2.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.no-results h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
+}
+
+.no-results p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. VENTANA MODAL (POPUP)
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 25, 47, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-card {
+  background-color: #ffffff;
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 580px;
+  padding: 2.25rem;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-light);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+  transition: var(--transition);
+}
+
+.modal-close:hover {
+  color: var(--text-primary);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-icon {
+  font-size: 2.25rem;
+  background-color: var(--bg-muted);
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+}
+
+.modal-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 0.25rem;
+}
+
+.modal-description {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.modal-subtitle {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.modal-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.modal-features li::before {
+  content: "✓";
+  color: var(--navy-accent);
+  font-weight: 800;
+}
+
+.modal-meta-box {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg-muted);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  margin-bottom: 1.75rem;
+}
+
+.meta-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.meta-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy-dark);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. PIE DE PÁGINA (ACADÉMICO MINIMALISTA)
+   -------------------------------------------------------------------------- */
+.footer {
+  background-color: var(--bg-muted);
+  border-top: 1px solid var(--border-light);
+  padding: 3rem 1rem 2.5rem 1rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Marco responsivo para el banner corporativo */
+.footer-banner-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 1.75rem auto;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(10, 25, 47, 0.08);
+  border: 1px solid var(--border-light);
+  background-color: #000000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-banner-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(10, 25, 47, 0.12);
+}
+
+.footer-banner {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.footer-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   8. RESPONSIVIDAD (MEDIA QUERIES)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .catalog-photo-column {
+    width: 160px;
+    margin-left: -90px;
+  }
+
+  .catalog-floating-photo {
+    width: 300px;
+    max-height: 520px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 2.5rem 1rem 2rem 1rem;
+  }
+
+  .brand-lockup {
+    max-width: 310px;
+  }
+
+  .brand-subtitle {
+    font-size: 0.74rem;
+    letter-spacing: 1px;
+    margin-top: 0.6rem;
+  }
+
+  .catalog-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .catalog-photo-column {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 2rem;
+    position: static;
+    justify-content: center;
+    pointer-events: auto;
+  }
+
+  .catalog-floating-photo {
+    width: 260px;
+    max-height: 420px;
+  }
+
+  .budget-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .budget-field {
+    max-width: 100%;
+  }
+
+  .action-buttons {
+    display: flex;
+  }
+
+  .action-buttons .btn {
+    flex: 1;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-banner-wrapper {
+    margin-bottom: 1.25rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .modal-card {
+    padding: 1.5rem;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+  }
+}

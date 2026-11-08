@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primiumbrands | Creative Services Marketplace</title>
+  <!-- Enlace a la hoja de estilos externa -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Enlace al archivo JavaScript con defer para ejecución ordenada tras el parseo del DOM -->
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+  <!-- ==========================================
+       ENCABEZADO (AZUL MARINO OSCURO)
+       ========================================== -->
+  <header class="header">
+    <div class="container header-container">
+      
+      <!-- Bloque de Identidad Oficial (Logo Protagónico + Leyenda Justificada) -->
+      <div class="brand-lockup">
+        <img 
+          src="https://res.cloudinary.com/df2znnugs/image/upload/v1794152618/logoPNG_Blanco_primiumbrands_nlrxre.png" 
+          alt="Logotipo oficial de Primiumbrands" 
+          class="brand-logo"
+        >
+        <!-- H1 accesible para buscadores y lectores de pantalla (oculto a la vista) -->
+        <h1 class="visually-hidden">Primiumbrands</h1>
+
+        <!-- Leyenda justificada al ancho exacto del logotipo -->
+        <p class="brand-subtitle" aria-label="Creative Services Marketplace">
+          <span>Creative</span>
+          <span>Services</span>
+          <span>Marketplace</span>
+        </p>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================
+       CONTENIDO PRINCIPAL
+       ========================================== -->
+  <main class="container main-content">
+
+    <!-- SECCIÓN DE FILTROS Y PRESUPUESTO -->
+    <section class="filters-card" aria-label="Controles de filtrado de servicios">
+      
+      <!-- Fila 1: Botones de filtro por categoría (generados dinámicamente) -->
+      <div class="filter-group">
+        <span class="filter-label">Categorías de Servicio:</span>
+        <div class="category-buttons" id="contenedorFiltros">
+          <button type="button" class="btn-category active" data-categoria="Todas">Todas</button>
+          <button type="button" class="btn-category" data-categoria="Branding">Branding</button>
+          <button type="button" class="btn-category" data-categoria="Digital Marketing">Digital Marketing</button>
+          <button type="button" class="btn-category" data-categoria="Web Design">Web Design</button>
+          <button type="button" class="btn-category" data-categoria="Packaging">Packaging</button>
+        </div>
+      </div>
+
+      <!-- Fila 2: Presupuesto máximo y botones de acción -->
+      <div class="budget-actions-row">
+        
+        <!-- Campo numérico para presupuesto máximo -->
+        <div class="budget-field">
+          <label for="presupuestoMax" class="filter-label">Presupuesto máximo ($):</label>
+          <div class="input-wrapper">
+            <span class="currency-symbol">$</span>
+            <input 
+              type="number" 
+              id="presupuestoMax" 
+              placeholder="Ej. 400" 
+              min="0" 
+              step="50"
+              aria-label="Presupuesto máximo en dólares"
+            >
+          </div>
+          <!-- Mensaje de validación para números no negativos -->
+          <span id="errorPresupuesto" class="error-message hidden">Por favor ingresa un número no negativo (0 o mayor).</span>
+        </div>
+
+        <!-- Botones de acción: Filtrar y Limpiar filtros -->
+        <div class="action-buttons">
+          <button type="button" id="btnFiltrar" class="btn btn-primary">Filtrar</button>
+          <button type="button" id="btnLimpiar" class="btn btn-secondary">Limpiar filtros</button>
+        </div>
+
+      </div>
+
+      <!-- Fila 3: Contador dinámico de resultados -->
+      <div class="results-bar">
+        <p id="contadorResultados" class="results-text">Cargando servicios disponibles...</p>
+      </div>
+
+    </section>
+
+    <!-- SECCIÓN DEL CATÁLOGO: PAQUETES CON FOTO PARALELA -->
+    <section class="catalog-section" aria-label="Catálogo de servicios creativos">
+      
+      <div class="catalog-layout">
+        
+        <!-- Columna de Paquetes / Servicios (Renderizados con JavaScript) -->
+        <div class="catalog-main">
+          <!-- Contenedor vacío donde JavaScript inyectará dinámicamente las tarjetas -->
+          <div id="serviciosGrid" class="services-grid"></div>
+
+          <!-- Mensaje informativo cuando ningún servicio coincide con los filtros -->
+          <div id="mensajeSinResultados" class="no-results hidden">
+            <div class="no-results-icon">📂</div>
+            <h3>No se encontraron servicios</h3>
+            <p>Intenta ajustar el presupuesto máximo o seleccionar otra categoría.</p>
+          </div>
+        </div>
+
+        <!-- Columna de la Foto de Adolfo Keeling a lo largo de los paquetes (cubriendo la mitad de un paquete) -->
+        <div class="catalog-photo-column" aria-hidden="true">
+          <img 
+            src="https://res.cloudinary.com/df2znnugs/image/upload/v1794155498/Hombre_sonriente_se%C3%B1alando_al_frente_vwmxqb.png" 
+            alt="Adolfo Keeling señalando a los paquetes de servicios" 
+            class="catalog-floating-photo"
+          >
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       VENTANA MODAL PARA DETALLES DE SERVICIO
+       ========================================== -->
+  <div id="modalDetalles" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card">
+      <button type="button" id="btnCerrarModal" class="modal-close" aria-label="Cerrar modal">&times;</button>
+      
+      <div class="modal-header">
+        <span id="modalIcono" class="modal-icon">✨</span>
+        <div>
+          <span id="modalCategoria" class="service-badge">Categoría</span>
+          <h2 id="modalTitulo" class="modal-title">Título del Servicio</h2>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <p id="modalDescripcion" class="modal-description">Descripción detallada.</p>
+        <h4 class="modal-subtitle">Entregables incluidos:</h4>
+        <ul id="modalListaIncluye" class="modal-features"></ul>
+
+        <div class="modal-meta-box">
+          <div>
+            <span class="meta-label">Inversión:</span>
+            <span id="modalPrecio" class="meta-value">$0.00</span>
+          </div>
+          <div>
+            <span class="meta-label">Tiempo estimado:</span>
+            <span id="modalTiempo" class="meta-value">-- días</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="btnCerrarModalSecundario" class="btn btn-secondary">Cerrar</button>
+        <button type="button" id="btnSolicitarServicio" class="btn btn-primary">Solicitar cotización</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PIE DE PÁGINA
+       ========================================== -->
+  <footer class="footer">
+    <div class="container footer-container">
+      
+      <!-- Banner corporativo de Adolfo Keeling (Responsive) -->
+      <div class="footer-banner-wrapper">
+        <img 
+          src="https://res.cloudinary.com/df2znnugs/image/upload/v1794154845/Banner_corporativo_de_Adolfo_Keeling_zesfgk.png" 
+          alt="Banner corporativo de Adolfo Keeling - Primiumbrands" 
+          class="footer-banner"
+        >
+      </div>
+
+      <p class="footer-text">Proyecto académico Kodigo.org — Adolfo Keeling</p>
+    </div>
+  </footer>
+
+</body>
+</html>
